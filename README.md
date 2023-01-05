@@ -47,11 +47,16 @@ php artisan key:generate
 php artisan migrate --seed
 ```
 
-6. Run application
+6. Compile assets
 
 ```bash
-php artisan serve
+npm run build
 ```
+
+7. Run application
+
+```bash
+php 
 
 Once you have started, application will be accessible in web browser at http://localhost:8000
 
@@ -115,6 +120,12 @@ sail artisan key:generate
 
 ```bash
 sail artisan migrate --seed
+```
+
+8. Compile assets
+
+```bash
+sail npm run build
 ```
 
 ##  Example User
