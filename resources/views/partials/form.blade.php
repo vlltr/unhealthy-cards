@@ -10,11 +10,13 @@
     <x-input-error class="mt-2" :messages="$errors->get('email')" />
 </div>
 
+@if (!request()->routeIs('user.edit'))
 <div class="py-3">
     <x-input-label for="password" :value="__('Password')" />
     <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" :value="old('password', $user->password ?? '')" required />
     <x-input-error class="mt-2" :messages="$errors->get('password')" />
 </div>
+@endif
 
 
 <div class="flex items-center gap-4">
