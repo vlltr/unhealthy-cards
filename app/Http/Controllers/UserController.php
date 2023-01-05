@@ -94,7 +94,7 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
 
-        return Redirect::route('user.index')->with('status', 'created');
+        return Redirect::route('user.index')->with('status', 'edit');
     }
 
     /**
@@ -105,6 +105,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return Redirect::route('user.index')->with('status', 'delete');
     }
 }

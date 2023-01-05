@@ -28,8 +28,8 @@
                                         <thead class="bg-gray-50">
                                             <tr>
                                                 <th scope="col"
-                                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                ID</th>
+                                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                    ID</th>
                                                 <th scope="col"
                                                     class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                                     Name</th>
@@ -47,12 +47,28 @@
                                         <tbody class="divide-y divide-gray-200 bg-white">
                                             @foreach ($users as $user)
                                             <tr>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$user->id}}</td>
-                                                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{$user->name}}</td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$user->email}}</td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$user->created_at}}</td>
-                                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                    <a href="{{ route('user.edit', $user) }}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,  {{$user->name}}</span></a>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                    {{$user->id}}</td>
+                                                <td
+                                                    class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                    {{$user->name}}</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{$user->email}}</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    {{$user->created_at}}</td>
+                                                <td
+                                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a href="{{ route('user.edit', $user) }}"
+                                                        class="text-indigo-600 hover:text-indigo-900">Edit<span
+                                                            class="sr-only">, {{$user->name}}</span></a>
+                                                    <form action="{{ route('user.destroy', $user) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="text-red-600 hover:text-red-900">Delete<span
+                                                                class="sr-only">, {{$user->name}}</span></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @endforeach
