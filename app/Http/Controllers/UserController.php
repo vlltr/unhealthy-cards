@@ -12,9 +12,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $getAllUsers = $user->orderBy('id', 'desc')->paginate(15);
+        return view('users', [ 'users' => $getAllUsers]);
     }
 
     /**
