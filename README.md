@@ -59,7 +59,7 @@ npm run build
 php 
 
 Once you have started, application will be accessible in web browser at http://localhost:8000
-
+```
 ##  Development Environment (Docker use Sail)
 
 It is recommended to run all from the WSL.
