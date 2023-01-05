@@ -59,6 +59,9 @@
                                                     {{$user->created_at}}</td>
                                                 <td
                                                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                                    <a href="{{ route('user.show', $user) }}"
+                                                    class="text-indigo-600 hover:text-indigo-900">Show<span
+                                                        class="sr-only">, {{$user->name}}</span></a><br>
                                                     <a href="{{ route('user.edit', $user) }}"
                                                         class="text-indigo-600 hover:text-indigo-900">Edit<span
                                                             class="sr-only">, {{$user->name}}</span></a>
