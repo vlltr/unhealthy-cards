@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
@@ -35,16 +35,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(StoreUserRequest $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-        ]);
-        
-        $user->create($request->only('name','email','password'));
-
+        $user->create($request->only('name', 'email', 'password'));
         return Redirect::route('user.index')->with('status', 'created');
     }
 
@@ -77,15 +70,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-        ]);
-
-        $user->update($request->only('name','email'));
-
+        $user->update($request->only('name', 'email'));
         return Redirect::route('user.index')->with('status', 'edit');
     }
 
