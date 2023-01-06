@@ -16,8 +16,7 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
-        $getAllUsers = $user->orderBy('id', 'desc')->paginate(15);
-        return view('users', ['users' => $getAllUsers]);
+        return view('users', ['users' => $user->getAllUsers()]);
     }
 
     /**
@@ -43,12 +42,8 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
         ]);
-
-        $user->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        
+        $user->create($request->only('name','email','password'));
 
         return Redirect::route('user.index')->with('status', 'created');
     }
@@ -89,10 +84,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
         ]);
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
+        $user->update($request->only('name','email'));
 
         return Redirect::route('user.index')->with('status', 'edit');
     }
